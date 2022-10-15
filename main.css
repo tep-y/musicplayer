@@ -6,8 +6,8 @@
 :root {
   --ghostwhite: #F6F8FF;
   --smokyblack: #070600;
-  --cadet: #596869;
-  --redcrayola: #EC0B43;
+  --platinum: #EAEBEB;
+  --cinnabar: #EC0B43;
   --lightcoral: #ED9390;
   --lightshadow: rgba(0, 0, 0, 0.15);
 }
@@ -31,7 +31,7 @@ body {
 }
 
 .wrapper i:hover {
-  color: var(--redcrayola);
+  color: var(--cinnabar);
 }
 
 .top-bar {
@@ -39,7 +39,7 @@ body {
 }
 
 .top-bar span {
-  font-size: 18px;
+  font-size: 12px;
   color: var(--smokyblack);
 }
 
@@ -56,4 +56,62 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.song-details {
+  text-align: center;
+  margin: 24px 0;
+}
+
+.song-details p {
+  margin: 0;
+}
+
+.song-details .title {
+  font-size: 21px;
+  font-weight: 600;
+}
+
+.song-details .artist {
+  font-size: 16px;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.progress-area {
+  width: 100%;
+  height: 6px;
+  background-color: var(--platinum);
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.progress-area .progress-bar {
+  position: relative;
+  width: 50%;
+  height: inherit;
+  border-radius: inherit;
+  background: linear-gradient(45deg, var(--lightcoral), 50%, var(--cinnabar));
+}
+.progress-bar::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -5px;
+  width: 12px;
+  height: 12px;
+  border-radius: inherit;
+  background: inherit;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.progress-area:hover .progress-bar::before {
+  opacity: 1;
+}
+
+.progress-area .timer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
