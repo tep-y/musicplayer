@@ -2,6 +2,8 @@ const wrapper = document.querySelector(".wrapper");
 const songImg = wrapper.querySelector(".image-area img");
 const songTitle = wrapper.querySelector(".song-details .title");
 const songArtist = wrapper.querySelector(".song-details .artist");
+const songAudio = wrapper.querySelector("#main-audio");
+const playPauseBtn = wrapper.querySelector(".play-pause i");
 
 let musicIndex = 1;
 
@@ -13,6 +15,7 @@ function loadMusic(indexNumber) {
   songTitle.innerText = allMusic[indexNumber - 1].title;
   songArtist.innerText = allMusic[indexNumber - 1].artist;
   songImg.src = `images/${allMusic[indexNumber -1].img}.jpg`;
+  songAudio.src = `songs/${allMusic[indexNumber -1].src}.mp3`;
 }
 
 //TODO: add play music function
@@ -20,3 +23,7 @@ function loadMusic(indexNumber) {
 
 //TODO: play or pause music onClick button event
 // must change class to : play or pause
+
+playPauseBtn.addEventListener("click", () => {
+  console.log("click");
+});
