@@ -19,11 +19,22 @@ function loadMusic(indexNumber) {
 }
 
 //TODO: add play music function
-//TODO: add pause music function
+function playMusic() {
+  wrapper.classList.add("paused");
+  songAudio.play();
+  console.log("playing");
+}
 
-//TODO: play or pause music onClick button event
-// must change class to : play or pause
+//TODO: add pause music function
+function pauseMusic() {
+  wrapper.classList.remove("paused");
+  songAudio.pause();
+  console.log("paused");
+}
 
 playPauseBtn.addEventListener("click", () => {
-  console.log("click");
+  //TODO: play or pause music onClick button event
+  // must change class to : play or pause
+  const isMusicPaused = wrapper.classList.contains("paused");
+  isMusicPaused ? pauseMusic() : playMusic();
 });
