@@ -7,7 +7,8 @@ const playPauseBtn = wrapper.querySelector(".play-pause i");
 const nextBtn = wrapper.querySelector("#next");
 const prevBtn = wrapper.querySelector("#prev");
 const progressBar = wrapper.querySelector(".progress-bar");
-const currentTime = wrapper.querySelector(".timer .current");
+const songCurrentTime = wrapper.querySelector(".timer .current");
+const songTotalTime = wrapper.querySelector(".timer .total");
 
 let musicIndex = 1;
 
@@ -62,12 +63,19 @@ prevBtn.addEventListener("click", () => {
 });
 
 songAudio.addEventListener('loadeddata', (event) => {
-  const duration = event.target.duration;
+  let duration = event.target.duration;
+  let totalMinute = Math.round((duration / 60));
+  let totalSeconds = Math.round((duration % 100));
+  songTotalTime.innerText = `${totalMinute}:${totalSeconds}`;
 
   songAudio.addEventListener('timeupdate', (event) => {
-    const currentTime = event.target.currentTime;
-    const progressWidth = (currentTime / duration) * 100;
+    let currentTime = event.target.currentTime;
+    let progressWidth = (currentTime / duration) * 100;
     progressBar.style.width = `${progressWidth}%`;
+
+    let currentMinute = Math.round((currentTime / 60));
+    let currentSeconds = Math.round((currentTime % 100));
+    if (currentSeconds < 10) currentSeconds = `0${currentSeconds}`;
+    songCurrentTime.innerText = `${currentMinute}:${currentSeconds}`;
   });
-  
-})
+});
