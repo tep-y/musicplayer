@@ -9,6 +9,7 @@ const prevBtn = wrapper.querySelector("#prev");
 const progressBar = wrapper.querySelector(".progress-bar");
 const songCurrentTime = wrapper.querySelector(".timer .current");
 const songTotalTime = wrapper.querySelector(".timer .total");
+const progressArea = wrapper.querySelector(".progress-area");
 
 let musicIndex = 1;
 
@@ -79,3 +80,14 @@ songAudio.addEventListener('loadeddata', (event) => {
     songCurrentTime.innerText = `${currentMinute}:${currentSeconds}`;
   });
 });
+
+progressArea.addEventListener("click", (event) => {
+  const progressAreaWidth = progressArea.clientWidth
+  const offsetX = event.offsetX;
+  const duration = songAudio.duration;
+  songAudio.currentTime = (offsetX / progressAreaWidth) * duration;
+
+});
+
+// TODO: turn 60 sec to 00;
+
