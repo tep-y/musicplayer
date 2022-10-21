@@ -74,8 +74,8 @@ songAudio.addEventListener('loadeddata', (event) => {
     let progressWidth = (currentTime / duration) * 100;
     progressBar.style.width = `${progressWidth}%`;
 
-    let currentMinute = Math.round((currentTime / 60));
-    let currentSeconds = Math.round((currentTime % 100));
+    let currentMinute = Math.floor((currentTime / 60));
+    let currentSeconds = Math.floor((currentTime % 60));
     if (currentSeconds < 10) currentSeconds = `0${currentSeconds}`;
     songCurrentTime.innerText = `${currentMinute}:${currentSeconds}`;
   });
@@ -88,6 +88,4 @@ progressArea.addEventListener("click", (event) => {
   songAudio.currentTime = (offsetX / progressAreaWidth) * duration;
 
 });
-
-// TODO: turn 60 sec to 00;
 
