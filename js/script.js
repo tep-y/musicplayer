@@ -13,6 +13,7 @@ const progressArea = wrapper.querySelector(".progress-area");
 const musicList = wrapper.querySelector(".music-list");
 const showPlaylist = wrapper.querySelector("#more-music");
 const hidePlaylist = musicList.querySelector("#close-list");
+const controlColor = wrapper.querySelector(".controls");
 
 let musicIndex = 1;
 
@@ -99,3 +100,32 @@ hidePlaylist.addEventListener("click", () => {
   musicList.classList.remove("show");
 });
 
+function backgroundColor(element) {
+  let hexChoices = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"];
+  let x = "";
+
+  for(let i = 0; i < 6; i++){
+    let hexPick = Math.round(Math.random() * 15);
+    let hexItem = hexChoices[hexPick];
+    x += hexItem;
+  };
+  let hexCode = element + x;
+  return hexCode;
+};
+
+let bgHex = "#";
+let color1 = backgroundColor(bgHex);
+let color2 = backgroundColor(bgHex);
+let gradient = "linear-gradient(" + color1 + ", " + color2 + ")";
+
+document.body.style.background = gradient;
+
+controlColor.addEventListener("mouseover", (event) => {
+  controlColor.style.color = "black";
+  event.target.style.color = color1;
+});
+
+controlColor.addEventListener("mouseout", (event) => {
+  controlColor.style.color = "black";
+  event.target.style.color = "#070600";
+});

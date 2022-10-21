@@ -24,7 +24,10 @@ body {
   overflow: hidden;
   width: 380px;
   padding: 24px 30px;
-  background-color: var(--ghostwhite);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: none;
   box-shadow: 0px 6px 15px var(--lightshadow);
   border-radius: 10px;
 }
@@ -44,7 +47,7 @@ body {
 
 .image-area {
   width: 100%;
-  height: 256px;
+  height: 276px;
   border-radius: 16px;
   box-shadow: 0px 6px 15px var(--lightshadow);
   overflow: hidden;
@@ -80,7 +83,10 @@ body {
 .progress-area {
   width: 100%;
   height: 6px;
-  background-color: var(--platinum);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: none;
   border-radius: 50px;
   cursor: pointer;
 }
@@ -127,13 +133,13 @@ body {
   margin: 40px 16px 24px 16px;
 }
 .controls i {
-  color: var(--smokyblack);
+  /* color: var(--smokyblack); */
   font-size: 24px;
   user-select: none;
 }
 
 .controls i:hover {
-  color: var(--cinnabar);
+
 }
 
 .controls i:nth-child(2),
@@ -146,7 +152,10 @@ body {
 
 .play-pause i {
   font-size: 48px;
-  background: linear-gradient(var(--platinum), var(--ghostwhite));
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: none;
   border-radius: 50%;
   box-shadow: 0px 0px 8px var(--lightshadow);
 }
