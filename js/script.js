@@ -10,6 +10,9 @@ const progressBar = wrapper.querySelector(".progress-bar");
 const songCurrentTime = wrapper.querySelector(".timer .current");
 const songTotalTime = wrapper.querySelector(".timer .total");
 const progressArea = wrapper.querySelector(".progress-area");
+const musicList = wrapper.querySelector(".music-list");
+const showPlaylist = wrapper.querySelector("#more-music");
+const hidePlaylist = musicList.querySelector("#close-list");
 
 let musicIndex = 1;
 
@@ -82,10 +85,17 @@ songAudio.addEventListener('loadeddata', (event) => {
 });
 
 progressArea.addEventListener("click", (event) => {
-  const progressAreaWidth = progressArea.clientWidth
+  const progressAreaWidth = progressArea.clientWidth;
   const offsetX = event.offsetX;
   const duration = songAudio.duration;
   songAudio.currentTime = (offsetX / progressAreaWidth) * duration;
+});
 
+showPlaylist.addEventListener("click", () => {
+  musicList.classList.toggle("show");
+});
+
+hidePlaylist.addEventListener("click", () => {
+  musicList.classList.remove("show");
 });
 

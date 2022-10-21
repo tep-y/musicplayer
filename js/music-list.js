@@ -29,4 +29,10 @@ let allMusic = [
     img: "img1",
     src: "song1"
   },
+  {
+    title: "Song title 6",
+    artist: "Artist6",
+    img: "img1",
+    src: "song1"
+  }
 ]

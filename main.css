@@ -162,10 +162,11 @@ body {
   padding: 24px 30px;
   opacity: 0;
   pointer-events: none;
+  transition: all 0.4s ease-out;
 }
 
 /* TODO: ADD USING JAVASCRIPT TO SHOW LIST */
-.music-list .show {
+.music-list.show {
   bottom: 0;
   opacity: 1;
   pointer-events: auto;
