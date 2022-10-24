@@ -15,6 +15,7 @@ const showPlaylist = wrapper.querySelector("#more-music");
 const hidePlaylist = musicList.querySelector("#close-list");
 const controlIcons = wrapper.querySelectorAll(".controls i");
 const nowPlaying = wrapper.querySelector(".top-bar .playing");
+const repeatBtn = wrapper.querySelector("#repeat-plist");
 
 let musicIndex = 1;
 
@@ -74,7 +75,9 @@ prevBtn.addEventListener("click", () => {
 songAudio.addEventListener('loadeddata', (event) => {
   let duration = event.target.duration;
   let totalMinute = Math.round((duration / 60));
-  let totalSeconds = Math.round((duration % 100));
+  let totalSeconds = Math.round((duration % 60));
+  if (totalSeconds < 10) totalSeconds = `0${totalSeconds}`;
+
   songTotalTime.innerText = `${totalMinute}:${totalSeconds}`;
 
   songAudio.addEventListener('timeupdate', (event) => {
@@ -139,8 +142,48 @@ controlIcons.forEach( function (icon) {
   })
 });
 
-
-
-//TODO: Change 'now playing' to only show when song is playing
 //TODO: Repeat one song, suffle playlist, repeat playlist button
+repeatBtn.addEventListener("click", () => {
+  let playlistBtn = repeatBtn.innerText;
+
+  switch(playlistBtn) {
+    case "repeat":
+      repeatBtn.innerText = "shuffle";
+    break;
+    case "shuffle":
+      repeatBtn.innerText = "repeat_one";
+    break;
+    case "repeat_one":
+      repeatBtn.innerText = "repeat";
+    break;
+  };
+});
+
+songAudio.addEventListener("ended", () => {
+  let playlistBtn = repeatBtn.innerText;
+
+  switch(playlistBtn) {
+    case "repeat":
+      nextMusic();
+    break;
+    case "shuffle":
+      let randomIndex = Math.floor((Math.random() * allMusic.length) + 1);
+
+      do {
+        randomIndex = Math.floor((Math.random() * allMusic.length) + 1);
+      } while (musicIndex == randomIndex);
+
+      musicIndex = randomIndex;
+      loadMusic(randomIndex);
+      playMusic();
+    break;
+    case "repeat_one":
+      songAudio.currentTime = 0;
+      loadMusic(musicIndex);
+      playMusic();
+    break;
+  };
+});
+
+
 //TODO: Music playlist, clickable list
