@@ -13,7 +13,7 @@ const progressArea = wrapper.querySelector(".progress-area");
 const musicList = wrapper.querySelector(".music-list");
 const showPlaylist = wrapper.querySelector("#more-music");
 const hidePlaylist = musicList.querySelector("#close-list");
-const controlColor = wrapper.querySelector(".controls");
+const controlIcons = wrapper.querySelectorAll(".controls i");
 
 let musicIndex = 1;
 
@@ -120,12 +120,12 @@ let gradient = "linear-gradient(" + color1 + ", " + color2 + ")";
 
 document.body.style.background = gradient;
 
-controlColor.addEventListener("mouseover", (event) => {
-  controlColor.style.color = "black";
-  event.target.style.color = color1;
-});
+controlIcons.forEach( function (icon) {
+  icon.addEventListener("mouseover", function hover() {
+    icon.style.color = color1;
+  });
 
-controlColor.addEventListener("mouseout", (event) => {
-  controlColor.style.color = "black";
-  event.target.style.color = "#070600";
+  icon.addEventListener("mouseout", function hover() {
+    icon.style.color = "black";
+  })
 });
