@@ -219,3 +219,30 @@ songAudio.addEventListener("ended", () => {
 
 
 //TODO: Music playlist, clickable list
+
+
+const ulTag = musicList.querySelector('ul');
+
+for(let i = 0; i < allMusic.length; i ++) {
+  const liTag = `<li>
+                  <div class="row">
+                    <span>${allMusic[i].title}</span>
+                    <p>${allMusic[i].artist}</p>
+                  </div>
+                  <audio class="${allMusic[i].src}" src="songs/${allMusic[i].src}.mp3"></audio>
+                  <span id="${allMusic[i].src}" class="audio-duration"></span>
+                </li>`; 
+  
+  ulTag.insertAdjacentHTML("beforeend", liTag);
+  let liAudioDuration = ulTag.querySelector(`.${allMusic[i].src}`);
+  let liShowAudio = ulTag.querySelector(`#${allMusic[i].src}`);
+
+  liAudioDuration.addEventListener("loadeddata", () => {
+    let duration = liAudioDuration.duration;
+    let totalMinute = Math.round((duration / 60));
+    let totalSeconds = Math.round((duration % 60));
+    if (totalSeconds < 10) totalSeconds = `0${totalSeconds}`;
+    
+    liShowAudio.innerText = `${totalMinute}:${totalSeconds}`;
+  });
+};
