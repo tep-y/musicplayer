@@ -37,12 +37,21 @@ body {
 }
 
 .top-bar {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+  min-height: 12px;
 }
 
 .top-bar span {
   font-size: 13px;
   color: var(--smokyblack);
+}
+
+.top-bar i {
+  font-size: 22px;
+  pointer-events: none;
 }
 
 .image-area {

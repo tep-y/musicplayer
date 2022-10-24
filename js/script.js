@@ -33,12 +33,14 @@ function playMusic() {
   wrapper.classList.add("playing");
   songAudio.play();
   playPauseBtn.innerText = "pause_circle";
+  nowPlaying.innerText = "Now Playing";
 }
 
 function pauseMusic() {
   wrapper.classList.remove("playing");
   songAudio.pause();
   playPauseBtn.innerText = "play_circle";
+  nowPlaying.innerText = "Music Paused";
 }
 
 function nextMusic() {
@@ -138,7 +140,7 @@ controlIcons.forEach( function (icon) {
 });
 
 
-//TODO: Change progress area color to match random color
+
 //TODO: Change 'now playing' to only show when song is playing
 //TODO: Repeat one song, suffle playlist, repeat playlist button
 //TODO: Music playlist, clickable list
