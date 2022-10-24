@@ -64,12 +64,54 @@ playPauseBtn.addEventListener("click", () => {
 });
 
 nextBtn.addEventListener("click", () => {
-  nextMusic();
+  let playlistBtn = repeatBtn.innerText;
+
+  switch(playlistBtn) {
+    case "repeat":
+      nextMusic();
+    break;
+    case "shuffle":
+      randomSong();
+    break;
+    case "repeat_one":
+      repeatOneSong();
+    break;
+  };
 });
 
 prevBtn.addEventListener("click", () => {
-  prevMusic();
+  let playlistBtn = repeatBtn.innerText;
+
+  switch(playlistBtn) {
+    case "repeat":
+      prevMusic();
+    break;
+    case "shuffle":
+      prevMusic();
+    break;
+    case "repeat_one":
+      repeatOneSong();
+    break;
+  };
 });
+
+function randomSong() {
+  let randomIndex = Math.floor((Math.random() * allMusic.length) + 1);
+
+  do {
+    randomIndex = Math.floor((Math.random() * allMusic.length) + 1);
+  } while (musicIndex == randomIndex);
+
+  musicIndex = randomIndex;
+  loadMusic(randomIndex);
+  playMusic();
+};
+
+function repeatOneSong() {
+  songAudio.currentTime = 0;
+  loadMusic(musicIndex);
+  playMusic();
+};
 
 //song current time & duration, and progress bar
 songAudio.addEventListener('loadeddata', (event) => {
@@ -167,20 +209,10 @@ songAudio.addEventListener("ended", () => {
       nextMusic();
     break;
     case "shuffle":
-      let randomIndex = Math.floor((Math.random() * allMusic.length) + 1);
-
-      do {
-        randomIndex = Math.floor((Math.random() * allMusic.length) + 1);
-      } while (musicIndex == randomIndex);
-
-      musicIndex = randomIndex;
-      loadMusic(randomIndex);
-      playMusic();
+      randomSong();
     break;
     case "repeat_one":
-      songAudio.currentTime = 0;
-      loadMusic(musicIndex);
-      playMusic();
+      repeatOneSong();
     break;
   };
 });
