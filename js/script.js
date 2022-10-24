@@ -14,6 +14,7 @@ const musicList = wrapper.querySelector(".music-list");
 const showPlaylist = wrapper.querySelector("#more-music");
 const hidePlaylist = musicList.querySelector("#close-list");
 const controlIcons = wrapper.querySelectorAll(".controls i");
+const nowPlaying = wrapper.querySelector(".top-bar .playing");
 
 let musicIndex = 1;
 
@@ -67,6 +68,7 @@ prevBtn.addEventListener("click", () => {
   prevMusic();
 });
 
+//song current time & duration, and progress bar
 songAudio.addEventListener('loadeddata', (event) => {
   let duration = event.target.duration;
   let totalMinute = Math.round((duration / 60));
@@ -100,6 +102,7 @@ hidePlaylist.addEventListener("click", () => {
   musicList.classList.remove("show");
 });
 
+//random background & progress bar gradient color
 function backgroundColor(element) {
   let hexChoices = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"];
   let x = "";
@@ -117,15 +120,25 @@ let bgHex = "#";
 let color1 = backgroundColor(bgHex);
 let color2 = backgroundColor(bgHex);
 let gradient = "linear-gradient(" + color1 + ", " + color2 + ")";
+let progressBarGradient = "linear-gradient(45deg, " + color1 + ", 50%, " + color2 + ")";
 
 document.body.style.background = gradient;
+progressBar.style.background = progressBarGradient;
 
+//control icons color change on hover
 controlIcons.forEach( function (icon) {
   icon.addEventListener("mouseover", function hover() {
     icon.style.color = color1;
   });
 
   icon.addEventListener("mouseout", function hover() {
-    icon.style.color = "black";
+    const smokyBlackColor = getComputedStyle(document.documentElement).getPropertyValue('--smokyblack');
+    icon.style.color = smokyBlackColor;
   })
 });
+
+
+//TODO: Change progress area color to match random color
+//TODO: Change 'now playing' to only show when song is playing
+//TODO: Repeat one song, suffle playlist, repeat playlist button
+//TODO: Music playlist, clickable list

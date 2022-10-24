@@ -133,21 +133,14 @@ body {
   margin: 40px 16px 24px 16px;
 }
 .controls i {
-  /* color: var(--smokyblack); */
+  color: var(--smokyblack);
   font-size: 24px;
   user-select: none;
-}
-
-.controls i:hover {
-
 }
 
 .controls i:nth-child(2),
 .controls i:nth-child(4) {
   font-size: 40px;
-}
-
-.play-pause {
 }
 
 .play-pause i {
