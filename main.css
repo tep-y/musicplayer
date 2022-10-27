@@ -218,6 +218,7 @@ body {
   margin-bottom: 4px;
   color: var(--smokyblack);
   border-bottom: 1px solid var(--platinum);
+  cursor: pointer;
 }
 
 .music-list ul li:last-child {
@@ -236,4 +237,8 @@ body {
 
 .music-list ul li .audio-duration {
   font-size: 16px;
+}
+
+ul li.playing {
+  pointer-events: none;
 }

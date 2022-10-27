@@ -21,6 +21,7 @@ let musicIndex = 1;
 
 window.addEventListener("load", () => {
   loadMusic(musicIndex);
+  playingNow();
 });
 
 function loadMusic(indexNumber) {
@@ -171,15 +172,15 @@ let progressBarGradient = "linear-gradient(45deg, " + color1 + ", 50%, " + color
 
 document.body.style.background = gradient;
 progressBar.style.background = progressBarGradient;
+const smokyBlackColor = getComputedStyle(document.documentElement).getPropertyValue('--smokyblack');
 
 //control icons color change on hover
-controlIcons.forEach( function (icon) {
+controlIcons.forEach(function (icon) {
   icon.addEventListener("mouseover", function hover() {
     icon.style.color = color1;
   });
 
   icon.addEventListener("mouseout", function hover() {
-    const smokyBlackColor = getComputedStyle(document.documentElement).getPropertyValue('--smokyblack');
     icon.style.color = smokyBlackColor;
   })
 });
@@ -219,12 +220,10 @@ songAudio.addEventListener("ended", () => {
 
 
 //TODO: Music playlist, clickable list
-
-
 const ulTag = musicList.querySelector('ul');
 
-for(let i = 0; i < allMusic.length; i ++) {
-  const liTag = `<li>
+for(let i = 0; i < allMusic.length; i++) {
+  const liTag = `<li li-index=${i + 1}>
                   <div class="row">
                     <span>${allMusic[i].title}</span>
                     <p>${allMusic[i].artist}</p>
@@ -244,5 +243,35 @@ for(let i = 0; i < allMusic.length; i ++) {
     if (totalSeconds < 10) totalSeconds = `0${totalSeconds}`;
     
     liShowAudio.innerText = `${totalMinute}:${totalSeconds}`;
+    liShowAudio.setAttribute("t-duration", `${totalMinute}:${totalSeconds}`);
   });
+};
+
+const allLiTag = ulTag.querySelectorAll('li');
+
+function playingNow() {
+  for(let j = 0; j < allLiTag.length; j++) {  
+    let audioTag = allLiTag[j].querySelector(".audio-duration");
+    let tDuration = audioTag.getAttribute("t-duration");
+
+    if(allLiTag[j].getAttribute("li-index") == (musicIndex)) {
+      allLiTag[j].classList.add("playing");
+      audioTag.innerText = "playing";
+      allLiTag[j].style.color = color1;
+    } else {
+      allLiTag[j].classList.remove("playing");
+      audioTag.innerText = tDuration;
+      allLiTag[j].style.color = smokyBlackColor;
+    };
+  
+    allLiTag[j].setAttribute("onclick", "clicked(this)");
+  };
+};
+
+function clicked(element) {
+  const liIndex = element.getAttribute("li-index");
+  musicIndex = liIndex;
+  loadMusic(musicIndex);
+  playMusic();
+  playingNow();
 };
