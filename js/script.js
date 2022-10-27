@@ -50,6 +50,7 @@ function nextMusic() {
   musicIndex > allMusic.length ? musicIndex = 1 : musicIndex = musicIndex;
   loadMusic(musicIndex);
   playMusic();
+  playingNow();
 }
 
 function prevMusic() {
@@ -57,6 +58,7 @@ function prevMusic() {
   musicIndex < 1 ? musicIndex = 1 : musicIndex = musicIndex;
   loadMusic(musicIndex);
   playMusic();
+  playingNow();
 }
 
 playPauseBtn.addEventListener("click", () => {
@@ -106,19 +108,21 @@ function randomSong() {
   musicIndex = randomIndex;
   loadMusic(randomIndex);
   playMusic();
+  playingNow();
 };
 
 function repeatOneSong() {
   songAudio.currentTime = 0;
   loadMusic(musicIndex);
   playMusic();
+  playingNow();
 };
 
 //song current time & duration, and progress bar
 songAudio.addEventListener('loadeddata', (event) => {
   let duration = event.target.duration;
-  let totalMinute = Math.round((duration / 60));
-  let totalSeconds = Math.round((duration % 60));
+  let totalMinute = Math.floor((duration / 60));
+  let totalSeconds = Math.floor((duration % 60));
   if (totalSeconds < 10) totalSeconds = `0${totalSeconds}`;
 
   songTotalTime.innerText = `${totalMinute}:${totalSeconds}`;
@@ -185,7 +189,7 @@ controlIcons.forEach(function (icon) {
   })
 });
 
-//TODO: Repeat one song, suffle playlist, repeat playlist button
+//repeat one song, suffle playlist, repeat playlist button
 repeatBtn.addEventListener("click", () => {
   let playlistBtn = repeatBtn.innerText;
 
