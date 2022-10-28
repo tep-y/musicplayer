@@ -18,3 +18,6 @@ let allMusic = [
     src: "song3"
   }
 ];
+
+// All music from Jamendo
+// https://www.jamendo.com/

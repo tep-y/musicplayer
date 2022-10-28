@@ -17,7 +17,7 @@ const controlIcons = wrapper.querySelectorAll(".controls i");
 const nowPlaying = wrapper.querySelector(".top-bar .playing");
 const repeatBtn = wrapper.querySelector("#repeat-plist");
 
-let musicIndex = 1;
+let musicIndex = Math.floor((Math.random() * allMusic.length) + 1);
 
 window.addEventListener("load", () => {
   loadMusic(musicIndex);
@@ -222,8 +222,7 @@ songAudio.addEventListener("ended", () => {
   };
 });
 
-
-//TODO: Music playlist, clickable list
+//Music playlist, clickable list
 const ulTag = musicList.querySelector('ul');
 
 for(let i = 0; i < allMusic.length; i++) {
